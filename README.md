@@ -1,9 +1,9 @@
 
-# <img src="src/logo.png" width="32" vertical-align="middle"> MemRewardBench
+# <img src="src/logo.png" width="32" vertical-align="middle"> MemoryRewardBench
 
 <p align="center">
     <a href="https://arxiv.org/pdf/2601.11969"><img src="https://img.shields.io/badge/arXiv-2601.11969-b31b1b.svg" alt="Paper"></a>
-    <a href="https://huggingface.co/datasets/LCM-Lab/MemRewardBench"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-blue" alt="Dataset"></a>
+    <a href="https://huggingface.co/datasets/LCM-Lab/MemoryRewardBench"><img src="https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Datasets-blue" alt="Dataset"></a>
     <a href="https://opensource.org/licenses/Apache-2.0"><img src="https://img.shields.io/badge/License-Apache%202.0-green.svg" alt="License"></a>
 </p>
 
@@ -13,7 +13,7 @@
 
 ## Introduction
 
-**MemRewardBench** is the first dedicated benchmark for evaluating **Reward Models (RMs)** in their ability to judge long-term memory management processes in Large Language Models. Unlike existing benchmarks that evaluate LLMs directly, MemRewardBench focuses on assessing how well RMs can evaluate the quality of intermediate memory states and memory management trajectories.
+**MemoryRewardBench** is the first dedicated benchmark for evaluating **Reward Models (RMs)** in their ability to judge long-term memory management processes in Large Language Models. Unlike existing benchmarks that evaluate LLMs directly, MemoryRewardBench focuses on assessing how well RMs can evaluate the quality of intermediate memory states and memory management trajectories.
 
 The benchmark includes **2,400 high-quality samples** across **three core tasks**: **Long-context Reasoning**, **Multi-turn Dialogue Understanding**, and **Long-form Generation**, with context lengths ranging from **8K to 128K tokens**. Each sample provides:
 - A question with long context
@@ -26,17 +26,17 @@ The benchmark includes **2,400 high-quality samples** across **three core tasks*
 
 ### Loading Data
 
-You can download and load MemRewardBench data through Hugging Face datasets:
+You can download and load MemoryRewardBench data through Hugging Face datasets:
 ```python
 from datasets import load_dataset
 
 # Load specific task
-data = load_dataset('LCM-Lab/MemRewardBench', 'Long-context_Reasoning', split='train')
+data = load_dataset('LCM-Lab/MemoryRewardBench', 'Long-context_Reasoning', split='train')
 
 # Or load all tasks
 tasks = ['Long-context_Reasoning', 'Multi-turn_Dialogue_Understanding', 'Long-form_Generation']
 for task in tasks:
-    data = load_dataset('LCM-Lab/MemRewardBench', task, split='train')
+    data = load_dataset('LCM-Lab/MemoryRewardBench', task, split='train')
 ```
 
 Alternatively, download the entire dataset using huggingface-cli:
@@ -44,7 +44,7 @@ Alternatively, download the entire dataset using huggingface-cli:
 huggingface-cli download \
   --repo-type dataset \
   --resume-download \
-  LCM-Lab/MemRewardBench \
+  LCM-Lab/MemoryRewardBench \
   --local-dir ./data
 ```
 
@@ -52,7 +52,7 @@ huggingface-cli download \
 
 ### Data Format
 
-All data in MemRewardBench are standardized to the following format:
+All data in MemoryRewardBench are standardized to the following format:
 ```json
 {
     "task": "Task category (Long-context_Reasoning, Multi-turn_Dialogue, Long-form_Generation)",
@@ -76,7 +76,7 @@ All data in MemRewardBench are standardized to the following format:
 
 ## Evaluation
 
-We utilize the **[LOOMEval](https://github.com/LCM-Lab/LOOM-Eval)** repository for evaluation. The evaluation code and data processing scripts for **MemRewardBench** have been fully integrated into LOOMEval for ease of use.
+We utilize the **[LOOMEval](https://github.com/LCM-Lab/LOOM-Eval)** repository for evaluation. The evaluation code and data processing scripts for **MemoryRewardBench** have been fully integrated into LOOMEval for ease of use.
 
 ### 1. Clone and Install
 ```bash
@@ -89,7 +89,7 @@ pip install -e .
 ```bash
 loomeval.run \ 
   --model_path /path/to/model \
-  --cfg_path /benchmarks/Reward/MemRewardBench/configs/MemRewardBench.yaml \
+  --cfg_path /benchmarks/Reward/MemoryRewardBench/configs/MemoryRewardBench.yaml \
   --server vllm \
   --device 0 1 2 3 4 5 6 7 \
   --gp_num 1 \
